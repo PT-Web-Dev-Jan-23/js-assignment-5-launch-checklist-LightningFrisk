@@ -21,13 +21,21 @@ function validateInput(testInput) {
     return "Is a Number";
    } else if (isNaN(testInput) === true) {
     return "Is not a Number";
-   } else {
+   } else if (testInput === undefined || testInput === null) {
     return "Empty";
+   } else {
+    let x = `Error parsing input ${testInput}`
+    return x;
    }
 }
 //document.getElementById("update");
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   
+    let fuel = document.getElementById("fuelLevel;");
+    let cargo = document.getElementById("cargoMass");
+    let pilotStatus = document.getElementById("pilotStatus");
+    let copilotStatus = document.getElementById("copilotStatus");
+
+    if 
 }
 
 async function myFetch() {
