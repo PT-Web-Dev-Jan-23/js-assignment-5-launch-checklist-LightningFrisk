@@ -35,7 +35,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let pilotStatus = document.getElementById("pilotStatus");
     let copilotStatus = document.getElementById("copilotStatus");
 
-    if 
+    if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number"){
+        // do something
+    } else if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty")
 }
 
 async function myFetch() {
