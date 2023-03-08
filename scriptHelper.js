@@ -43,10 +43,22 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if (validatedEntries[0] === "Is a Number" || validatedEntries[0] === "Empty" || validatedEntries[1] === "Is a Number" || validatedEntries[1] === "Empty")
     {//checks pilot and copilot number if they're valid, if not throws something for user to do
         alert("All fields require valid input.");
-    } else {
-        
-        if cargoMass <= 10000
+    } else 
+    {
+        pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+        copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
+        let launchStatus = document.getElementById("launchStatus");
+        if (cargoLevel >= 10000 || fuelLevel < 10000)
+        {
             list.style.visibility = "visible";
+            if (fuelLevel < 10000){
+                fuel.innerHTML = "Not enough fuel for the journey"
+            }
+            if (cargoLevel >= 10000){
+                cargo.innerHTML = "Too much mass for the shuttle to take off"
+            }
+            launchStatus.style.color = "red";
+        }
     }
 }
 
