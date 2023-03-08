@@ -35,9 +35,31 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let pilotStatus = document.getElementById("pilotStatus");
     let copilotStatus = document.getElementById("copilotStatus");
 
-    if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number"){
-        // do something
-    } else if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty")
+    let entries = [pilot, copilot, fuelLevel, cargoLevel]
+    let validatedEntries
+    for (i=0; i < entries.length; i++){
+       validatedEntries.push(validateInput(entries[i])); //runs each entry thru validate input and pushes to an array validatedEntries
+    }; 
+    if (validatedEntries[0] === "Is a Number" || validatedEntries[0] === "Empty" || validatedEntries[1] === "Is a Number" || validatedEntries[1] === "Empty")
+    {//checks pilot and copilot number if they're valid, if not throws something for user to do
+        alert("All fields require valid input.");
+    } else 
+    {
+        pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+        copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
+        let launchStatus = document.getElementById("launchStatus");
+        if (cargoLevel >= 10000 || fuelLevel < 10000)
+        {
+            list.style.visibility = "visible";
+            if (fuelLevel < 10000){
+                fuel.innerHTML = "Not enough fuel for the journey"
+            }
+            if (cargoLevel >= 10000){
+                cargo.innerHTML = "Too much mass for the shuttle to take off"
+            }
+            launchStatus.style.color = "red";
+        }
+    }
 }
 
 async function myFetch() {
